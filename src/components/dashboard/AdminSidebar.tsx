@@ -100,7 +100,7 @@ const AdminSidebar = () => {
                       className={({ isActive }) =>
                         `group flex items-center space-x-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                           isActive
-                            ? 'bg-blue-600 text-white shadow-lg'
+                            ? 'bg-blue-600 shadow-lg'
                             : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
                         } ${collapsed ? 'justify-center' : ''}`
                       }
