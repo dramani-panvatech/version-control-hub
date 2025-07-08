@@ -13,7 +13,6 @@ import {
   HelpCircle,
   User,
   LogOut,
-  Bell,
   Search
 } from 'lucide-react';
 import {
@@ -49,47 +48,47 @@ const AdminSidebar = () => {
   };
 
   return (
-    <Sidebar className="w-80 border-r border-gray-200 bg-white">
-      <SidebarHeader className="p-6 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-indigo-50">
-        <div className="flex items-center justify-between mb-4">
+    <Sidebar className="w-72 border-r-0 bg-white/80 backdrop-blur-sm">
+      <SidebarHeader className="p-8 border-b-0">
+        <div className="flex items-center justify-center mb-8">
           <div className="flex items-center space-x-3">
-            <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
-              <Clock className="h-5 w-5 text-white" />
+            <div className="h-9 w-9 bg-gradient-to-br from-rose-400 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+              <Clock className="h-4 w-4 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900">FlowTime</h1>
-              <p className="text-xs text-gray-500 font-medium">Admin Dashboard</p>
+              <h1 className="text-xl font-semibold text-gray-800 font-cabinet">FlowTime</h1>
+              <p className="text-xs text-gray-400 font-medium">Admin Panel</p>
             </div>
           </div>
         </div>
         
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
           <Input 
             placeholder="Search..." 
-            className="pl-10 h-9 bg-white/70 border-gray-200 focus:bg-white text-gray-900"
+            className="pl-12 h-11 bg-gray-50/50 border-0 rounded-2xl focus:bg-white focus:shadow-sm text-gray-700 placeholder-gray-400 transition-all duration-200"
           />
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="px-2 py-4">
+      <SidebarContent className="px-6 py-4">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-1">
+            <SidebarMenu className="space-y-2">
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <NavLink
                       to={item.url}
                       className={({ isActive }) =>
-                        `group flex items-center rounded-lg text-sm font-medium transition-all duration-200 px-3 py-3 space-x-3 ${
+                        `group flex items-center rounded-2xl text-sm font-medium transition-all duration-300 px-4 py-3 space-x-3 ${
                           isActive
-                            ? 'bg-blue-600 text-white shadow-lg'
-                            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                            ? 'bg-gradient-to-r from-rose-400 to-pink-500 text-white shadow-lg transform scale-[1.02]'
+                            : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50/80 hover:transform hover:scale-[1.01]'
                         }`
                       }
                     >
-                      <item.icon className="h-5 w-5 flex-shrink-0" />
+                      <item.icon className="h-4 w-4 flex-shrink-0" />
                       <span className="font-medium">{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
@@ -100,54 +99,56 @@ const AdminSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="px-2 py-4 border-t border-gray-100 bg-gray-50/50">
-        <div className="space-y-2">
-          <div className="flex items-center space-x-3 px-3 py-3 rounded-lg bg-white border border-gray-200">
-            <div className="h-8 w-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+      <SidebarFooter className="px-6 py-6 border-t-0">
+        <div className="space-y-3">
+          <div className="flex items-center space-x-3 px-4 py-3 rounded-2xl bg-gray-50/50 border-0">
+            <div className="h-9 w-9 bg-gradient-to-br from-violet-400 to-purple-500 rounded-full flex items-center justify-center shadow-md">
               <User className="h-4 w-4 text-white" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-gray-900">Dr. Sarah Johnson</p>
-              <p className="text-xs text-gray-500">sarah@flowtime.com</p>
+              <p className="text-sm font-medium text-gray-800">Dr. Sarah Johnson</p>
+              <p className="text-xs text-gray-400">sarah@flowtime.com</p>
             </div>
           </div>
 
-          <NavLink
-            to="/dashboard/help"
-            className={({ isActive }) =>
-              `flex items-center rounded-lg text-sm font-medium transition-all duration-200 px-3 py-2 space-x-3 ${
-                isActive
-                  ? 'bg-blue-600 text-white'
-                  : 'text-gray-700 hover:text-gray-900 hover:bg-white'
-              }`
-            }
-          >
-            <HelpCircle className="h-4 w-4" />
-            <span>Help & Support</span>
-          </NavLink>
-          
-          <NavLink
-            to="/dashboard/profile"
-            className={({ isActive }) =>
-              `flex items-center rounded-lg text-sm font-medium transition-all duration-200 px-3 py-2 space-x-3 ${
-                isActive
-                  ? 'bg-blue-600 text-white'
-                  : 'text-gray-700 hover:text-gray-900 hover:bg-white'
-              }`
-            }
-          >
-            <User className="h-4 w-4" />
-            <span>Your Profile</span>
-          </NavLink>
+          <div className="space-y-1">
+            <NavLink
+              to="/dashboard/help"
+              className={({ isActive }) =>
+                `flex items-center rounded-2xl text-sm font-medium transition-all duration-200 px-4 py-2.5 space-x-3 ${
+                  isActive
+                    ? 'bg-gradient-to-r from-rose-400 to-pink-500 text-white'
+                    : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50/80'
+                }`
+              }
+            >
+              <HelpCircle className="h-4 w-4" />
+              <span>Help & Support</span>
+            </NavLink>
+            
+            <NavLink
+              to="/dashboard/profile"
+              className={({ isActive }) =>
+                `flex items-center rounded-2xl text-sm font-medium transition-all duration-200 px-4 py-2.5 space-x-3 ${
+                  isActive
+                    ? 'bg-gradient-to-r from-rose-400 to-pink-500 text-white'
+                    : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50/80'
+                }`
+              }
+            >
+              <User className="h-4 w-4" />
+              <span>Your Profile</span>
+            </NavLink>
 
-          <Button
-            onClick={handleSignOut}
-            variant="ghost"
-            className="w-full justify-start px-3 py-2 h-auto text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200"
-          >
-            <LogOut className="h-4 w-4" />
-            <span className="ml-3">Sign Out</span>
-          </Button>
+            <Button
+              onClick={handleSignOut}
+              variant="ghost"
+              className="w-full justify-start px-4 py-2.5 h-auto text-sm font-medium text-rose-500 hover:text-rose-600 hover:bg-rose-50/50 rounded-2xl transition-all duration-200"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="ml-3">Sign Out</span>
+            </Button>
+          </div>
         </div>
       </SidebarFooter>
     </Sidebar>
