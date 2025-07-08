@@ -62,13 +62,7 @@ const AdminSidebar = () => {
           </div>
         </div>
         
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-300" />
-          <Input 
-            placeholder="Search..." 
-            className="pl-12 h-11 bg-gray-50/50 border-0 rounded-2xl focus:bg-white focus:shadow-sm text-gray-700 placeholder-gray-400 transition-all duration-200"
-          />
-        </div>
+        
       </SidebarHeader>
 
       <SidebarContent className="px-6 py-4">
@@ -83,7 +77,7 @@ const AdminSidebar = () => {
                       className={({ isActive }) =>
                         `group flex items-center rounded-2xl text-sm font-medium transition-all duration-300 px-4 py-3 space-x-3 ${
                           isActive
-                            ? 'bg-gradient-to-r from-rose-400 to-pink-500 text-white shadow-lg transform scale-[1.02]'
+                            ? 'bg-gradient-to-r from-rose-400 to-pink-500 shadow-lg transform scale-[1.02]'
                             : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50/80 hover:transform hover:scale-[1.01]'
                         }`
                       }
