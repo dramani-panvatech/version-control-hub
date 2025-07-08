@@ -95,27 +95,39 @@ const AdminSidebar = () => {
 
   return (
     <TooltipProvider delayDuration={0}>
-      <Sidebar className={`border-r border-gray-200 bg-white transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-80'}`}>
-        <SidebarHeader className={`p-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-indigo-50 ${isCollapsed ? 'px-2' : 'px-6'}`}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-3">
-              <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
-                <Clock className="h-5 w-5 text-white" />
-              </div>
-              {!isCollapsed && (
+      <Sidebar 
+        className={`border-r border-gray-200 bg-white transition-all duration-300 ${
+          isCollapsed ? 'w-16' : 'w-80'
+        }`}
+        collapsible="icon"
+      >
+        <SidebarHeader className={`p-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-indigo-50 ${
+          isCollapsed ? 'px-2' : 'px-6'
+        }`}>
+          <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} mb-4`}>
+            {!isCollapsed && (
+              <div className="flex items-center space-x-3">
+                <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
+                  <Clock className="h-5 w-5 text-white" />
+                </div>
                 <div>
                   <h1 className="text-lg font-bold text-gray-900">FlowTime</h1>
                   <p className="text-xs text-gray-500 font-medium">Admin Dashboard</p>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+            {isCollapsed && (
+              <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
+                <Clock className="h-5 w-5 text-white" />
+              </div>
+            )}
             <Button 
               variant="ghost" 
               size="sm" 
               className="h-8 w-8 p-0"
               onClick={toggleSidebar}
             >
-              {isCollapsed ? <Menu className="h-4 w-4" /> : <X className="h-4 w-4" />}
+              {isCollapsed ? <Menu className="h-4 w-4 text-gray-700" /> : <X className="h-4 w-4 text-gray-700" />}
             </Button>
           </div>
           
@@ -124,13 +136,13 @@ const AdminSidebar = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input 
                 placeholder="Search..." 
-                className="pl-10 h-9 bg-white/70 border-gray-200 focus:bg-white"
+                className="pl-10 h-9 bg-white/70 border-gray-200 focus:bg-white text-gray-900"
               />
             </div>
           )}
         </SidebarHeader>
 
-        <SidebarContent className="px-2 py-4">
+        <SidebarContent className={`px-2 py-4 ${isCollapsed ? 'px-1' : 'px-2'}`}>
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu className="space-y-1">
@@ -141,11 +153,15 @@ const AdminSidebar = () => {
                         <NavLink
                           to={item.url}
                           className={({ isActive }) =>
-                            `group flex items-center px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                            `group flex items-center rounded-lg text-sm font-medium transition-all duration-200 ${
                               isActive
-                                ? 'bg-[#1E3A8A] text-white shadow-lg'
+                                ? 'bg-blue-600 text-white shadow-lg'
                                 : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                            } ${isCollapsed ? 'justify-center w-10 h-10' : 'space-x-3'}`
+                            } ${
+                              isCollapsed 
+                                ? 'justify-center w-10 h-10 p-2 mx-auto' 
+                                : 'px-3 py-3 space-x-3'
+                            }`
                           }
                         >
                           <item.icon className="h-5 w-5 flex-shrink-0" />
@@ -160,7 +176,9 @@ const AdminSidebar = () => {
           </SidebarGroup>
         </SidebarContent>
 
-        <SidebarFooter className="px-2 py-4 border-t border-gray-100 bg-gray-50/50">
+        <SidebarFooter className={`px-2 py-4 border-t border-gray-100 bg-gray-50/50 ${
+          isCollapsed ? 'px-1' : 'px-2'
+        }`}>
           <div className="space-y-2">
             {!isCollapsed && (
               <div className="flex items-center space-x-3 px-3 py-3 rounded-lg bg-white border border-gray-200">
@@ -178,11 +196,15 @@ const AdminSidebar = () => {
               <NavLink
                 to="/dashboard/help"
                 className={({ isActive }) =>
-                  `flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  `flex items-center rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? 'bg-[#1E3A8A] text-white'
+                      ? 'bg-blue-600 text-white'
                       : 'text-gray-700 hover:text-gray-900 hover:bg-white'
-                  } ${isCollapsed ? 'justify-center w-10 h-10' : 'space-x-3'}`
+                  } ${
+                    isCollapsed 
+                      ? 'justify-center w-10 h-10 p-2 mx-auto' 
+                      : 'px-3 py-2 space-x-3'
+                  }`
                 }
               >
                 <HelpCircle className="h-4 w-4" />
@@ -194,11 +216,15 @@ const AdminSidebar = () => {
               <NavLink
                 to="/dashboard/profile"
                 className={({ isActive }) =>
-                  `flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  `flex items-center rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? 'bg-[#1E3A8A] text-white'
+                      ? 'bg-blue-600 text-white'
                       : 'text-gray-700 hover:text-gray-900 hover:bg-white'
-                  } ${isCollapsed ? 'justify-center w-10 h-10' : 'space-x-3'}`
+                  } ${
+                    isCollapsed 
+                      ? 'justify-center w-10 h-10 p-2 mx-auto' 
+                      : 'px-3 py-2 space-x-3'
+                  }`
                 }
               >
                 <User className="h-4 w-4" />
@@ -210,7 +236,11 @@ const AdminSidebar = () => {
               <Button
                 onClick={handleSignOut}
                 variant="ghost"
-                className={`w-full px-3 py-2 h-auto text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200 ${isCollapsed ? 'justify-center w-10 h-10' : 'justify-start'}`}
+                className={`w-full text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200 ${
+                  isCollapsed 
+                    ? 'justify-center w-10 h-10 p-2 mx-auto' 
+                    : 'justify-start px-3 py-2 h-auto'
+                }`}
               >
                 <LogOut className="h-4 w-4" />
                 {!isCollapsed && <span className="ml-3">Sign Out</span>}
